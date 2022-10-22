@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Models\Baju;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home',
-    ["bajus" => Baju::all()]
-);
+Route::get('/home', function () {
+    return view('home');
 })->name('home');
+
+Route::get('/table', function () {
+    return view('table',[
+        "bajus" => Baju::all()
+        ]);
+});
+
+
+Route::get('/register', function () {
+    return view('register');
+})->name("register");
+
+Route::post('/action-register', [AuthController::class, 'actionRegister']);

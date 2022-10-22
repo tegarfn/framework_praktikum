@@ -15,7 +15,7 @@ class PakaianSeeder extends Seeder
      */
     public function run()
     {
-        $pakaian = [
+        $pakaians = [
             [
                 'id' => '1',
                 'model' => 'T-shirt'
@@ -29,8 +29,10 @@ class PakaianSeeder extends Seeder
                 'model' => 'Jersey'
             ],
         ];
-        foreach($pakaian as $pk){
-            Pakaian::firstOrCreate($pk);
+        foreach($pakaians as $pakaian){
+            Pakaian::create([
+                'model' => $pakaian["model"]
+            ]);
         }
     }
 }

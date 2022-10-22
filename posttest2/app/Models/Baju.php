@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Baju extends Model
 {
-    public function prodi()
+    public function Pakaian()
     {
         return $this->belongsTo((Pakaian::class));
     }
+
     use HasFactory;
 
     protected $table = 'bajus';
-    protected $fillable = ['id','tipe','ukuran','warna','jumlah'];
+    protected $fillable = [
+        'id',
+        'tipe',
+        'ukuran',
+        'warna',
+        'jumlah'];
 }

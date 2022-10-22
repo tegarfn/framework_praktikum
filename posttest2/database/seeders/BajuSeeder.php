@@ -15,31 +15,36 @@ class BajuSeeder extends Seeder
      */
     public function run()
     {
-        $baju = [
+        $bajus = [
             [
                 'id' => '1',
-                'tipe' => 'T-shirt',
+                'tipe' => '1',
                 'ukuran' => 'L',
                 'warna' => 'Merah',
                 'jumlah' => '1',
             ],
             [
                 'id' => '2',
-                'tipe' => 'Polo',
+                'tipe' => '2',
                 'ukuran' => 'XL',
                 'warna' => 'Jingga',
                 'jumlah' => '4',
             ],
             [
                 'id' => '3',
-                'tipe' => 'Jersey',
+                'tipe' => '3',
                 'ukuran' => 'M',
                 'warna' => 'Biru',
                 'jumlah' => '12',
             ],
         ];
-        foreach($baju as $bj){
-            Baju::firstOrCreate($bj);
+        foreach($bajus as $bj){
+            Baju::create([
+                'tipe' => $bj["tipe"],
+                'ukuran' => $bj["ukuran"],
+                'warna' => $bj["warna"],
+                'jumlah' => $bj["jumlah"]
+            ]);
         }
     }
 }
