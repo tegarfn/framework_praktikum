@@ -19,27 +19,27 @@ class BajuController extends Controller
     {
         return view('baju.create', [
             "pakaians" => Pakaian::all(),
-            'title' => 'baju'
+            'title' => 'Baju'
         ]);
     }
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'tipe_id' => 'required',
-            'Ukuran' => 'required|unique:mahasiswas|string',
+            'tipe' => 'required',
+            'Ukuran' => 'required',
             'warna' => 'required|string|max:100',
             'jumlah' => 'required|integer|max:100',
         ]);
 
         Baju::create($validateData);
 
-        return redirect()->route('baju.index')->with('success', 'baju Berhasil Ditambahkan');
+        return redirect()->route('baju.index')->with('success', 'Baju Berhasil Ditambahkan');
     }
     public function show(Baju $id)
     {
         return view('baju.show', [
             'baju' => $id,
-            'title' => 'baju',
+            'title' => 'Baju',
         ]);
     }
 }

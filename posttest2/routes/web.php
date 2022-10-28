@@ -25,8 +25,7 @@ Route::get('/table', function () {
     return view('table',[
         "bajus" => Baju::all()
         ]);
-});
-
+})->middleware('auth');
 
 Route::get('/register', function () {
     return view('register');
@@ -34,7 +33,13 @@ Route::get('/register', function () {
 
 Route::post('/action-register', [AuthController::class, 'actionRegister']);
 
+Route::post('/action-login', [AuthController::class, 'actionLogin']);
+
+Route::get('/login', [AuthController::class, 'loginView'])->name("login");
+
+Route::get('/logout', [AuthController::class, 'logout']);
+
 Route::get('/baju', [BajuController::class, 'index'])->name('baju.index');
 Route::get('/baju/create', [BajuController::class, 'create'])->name('baju.create');
-Route::post('/baju/store', [BajuController::class, 'store'])->name('baju.store');
-Route::get('/baju/show/{id}', [BajuController::class, 'show'])->name('baju.show');
+Route::post('/baju', [BajuController::class, 'store'])->name('baju.store')->middleware('auth');
+Route::get('/baju/show/{id}', [BajuController::class, 'show'])->name('baju.show')->middleware('auth');
