@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Baju extends Model
 {
-    public function Pakaian()
+    public function pakaian()
     {
-        return $this->belongsTo((Pakaian::class));
+        return $this->belongsTo(Pakaian::class, 'tipe');
     }
 
     use HasFactory;

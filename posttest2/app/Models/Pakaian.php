@@ -9,17 +9,15 @@ use Illuminate\Support\Facades\Schema;
 
 class Pakaian extends Model
 {
-    public function Baju()
+    public function baju()
     {
-        return $this->hasMany((Baju::class));
+        return $this->hasMany(Baju::class);
     }
-    public function up()
-    {
-        Schema::create('prodis', function(Blueprint $table){
-            $table->id();
-            $table->string('model');
-            $table->timestamps();
-        });
-    }
-    use HasFactory;
+
+    protected $table = "pakaians";
+
+    protected $fillable = [
+        "id",
+        "model"
+    ];
 }

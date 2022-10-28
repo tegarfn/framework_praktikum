@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BajuController;
 use App\Models\Baju;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');
 
@@ -32,3 +33,8 @@ Route::get('/register', function () {
 })->name("register");
 
 Route::post('/action-register', [AuthController::class, 'actionRegister']);
+
+Route::get('/baju', [BajuController::class, 'index'])->name('baju.index');
+Route::get('/baju/create', [BajuController::class, 'create'])->name('baju.create');
+Route::post('/baju/store', [BajuController::class, 'store'])->name('baju.store');
+Route::get('/baju/show/{id}', [BajuController::class, 'show'])->name('baju.show');
