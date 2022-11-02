@@ -1,7 +1,7 @@
 @extends('layouts.global')
 
 @section('title')
-    Show Data
+    Data {{$baju->pakaian->model}}
 @endsection
 
 @section('content')

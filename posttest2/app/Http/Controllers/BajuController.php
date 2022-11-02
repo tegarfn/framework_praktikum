@@ -42,4 +42,32 @@ class BajuController extends Controller
             'title' => 'Baju',
         ]);
     }
+    public function edit(Baju $id)
+    {
+        return view('baju.edit', [
+            'title' => 'baju',
+            'baju' => $id,
+            'pakaians' => Pakaian::all()
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $baju = Baju::findOrFall($id);
+        $validateData = $request->validate([
+            'tipe' => 'required',
+            'Ukuran' => 'required',
+            'warna' => 'required|string|max:100',
+            'jumlah' => 'required|integer|max:100',
+        ]);
+
+        $baju->update($validateData);
+
+        return redirect()->route('baju.index')->with('success', 'Baju Berhasil Diupdate!');
+    }
+    public function destroy($id)
+    {
+        $baju = Baju::findOrFall($id);
+        $baju->delete();
+        return redirect()->route('baju.index')->with('success', 'Baju Berhasil Dihapus!');
+    }
 }

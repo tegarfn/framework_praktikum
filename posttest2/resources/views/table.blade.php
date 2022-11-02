@@ -1,7 +1,7 @@
 @extends('layouts.global')
 
 @section('title')
-    Selamat datang
+    Data Baju
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
                 <b>Yeah!</b> {{ session('success') }}
             </div>
         @endif
-        <a href="{{route('baju.create')}}" class=""><Button class="btn btn-primary mb-3">Tambah</Button></a>
+        <a href="{{ route('baju.create') }}" class=""><Button class="btn btn-primary mb-3">Tambah</Button></a>
         <table class="table">
             <thead>
                 <tr>
@@ -32,6 +32,19 @@
                         <td>{{ $baju->ukuran }}</td>
                         <td>{{ $baju->warna }}</td>
                         <td>{{ $baju->jumlah }}</td>
+                        <td>
+                            <a href="/baju/show/{{$baju->id}}" class=""><Button class="btn btn-success mb-2">Lihat</Button></a>
+                        </td>
+                        <td>
+                            <a href="/baju/{{$baju->id}}/edit" class=""><Button class="btn btn-warning mb-2">Edit</Button></a>
+                        </td>
+                        <td>
+                            <form action="{{ route('baju.delete', $baju->id)}}" method="post" style="display: inline" onsubmit="confirm('Yakin menghapus?')">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger mb-3">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

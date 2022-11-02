@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BajuController;
 use App\Models\Baju;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/baju', [BajuController::class, 'index'])->name('baju.index');
 Route::get('/baju/create', [BajuController::class, 'create'])->name('baju.create');
 Route::post('/baju', [BajuController::class, 'store'])->name('baju.store')->middleware('auth');
+
 Route::get('/baju/show/{id}', [BajuController::class, 'show'])->name('baju.show')->middleware('auth');
+
+Route::get('/baju/{id}/edit', [BajuController::class, 'edit'])->name('baju.edit')->middleware('auth');
+
+Route::get('/baju/{id}', [BajuController::class, 'update'])->name('baju.update')->middleware('auth');
+
+Route::get('/baju/{id}', [BajuController::class, 'destroy'])-> name('baju.delete')->middleware('auth');
